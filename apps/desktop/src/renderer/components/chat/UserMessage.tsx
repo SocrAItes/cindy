@@ -1335,6 +1335,7 @@ export function UserMessage({
       // scrollIntoView 也以此为目标)。messageClientId 缺失时不挂属性,以免
       // querySelector 命中"data-user-msg-id" 空字符串。
       {...(messageClientId ? { 'data-user-msg-id': messageClientId } : {})}
+      data-selection-quote-scope=""
       className={cn(
         'flex w-full',
         orcaCommunication || hookSource ? 'justify-start' : 'justify-end',
@@ -1409,7 +1410,7 @@ export function UserMessage({
               </button>
               {orcaExpanded && (
                 <div className="border-t border-[var(--msg-tool-card-border)] px-3 py-2">
-                  <pre className="m-0 whitespace-pre-wrap break-words font-mono text-[length:calc(var(--app-code-font-size)_-_2px)] leading-[calc(var(--app-code-font-size)_+_4px)] text-foreground">
+                  <pre data-selection-quote-body="" className="m-0 whitespace-pre-wrap break-words font-mono text-[length:calc(var(--app-code-font-size)_-_2px)] leading-[calc(var(--app-code-font-size)_+_4px)] text-foreground">
                     {displayContent}
                   </pre>
                 </div>
@@ -1560,6 +1561,7 @@ export function UserMessage({
                     )}
                     {inlineQuoteCount > 0 ? (
                       <div
+                        data-selection-quote-body=""
                         className={cn(
                           'min-w-0 whitespace-pre-wrap [overflow-wrap:anywhere]',
                           longMessageCollapsed &&
@@ -1637,6 +1639,7 @@ export function UserMessage({
                       </div>
                     ) : displayBubbleBody.trim() ? (
                       <div
+                        data-selection-quote-body=""
                         className={cn(
                           'whitespace-pre-wrap [overflow-wrap:anywhere]',
                           longMessageCollapsed &&
